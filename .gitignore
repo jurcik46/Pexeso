@@ -1,0 +1,8 @@
+.vs/
+packages/
+Pexeso.Library/bin/
+Pexeso.Library/obj/
+Pexeso.Server/bin/
+Pexeso.Server/obj/
+Pexeso.Wpf/bin/
+Pexeso.Wpf/obj/

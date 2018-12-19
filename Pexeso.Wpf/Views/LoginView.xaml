@@ -1,0 +1,69 @@
+﻿<Window x:Class="Pexeso.Wpf.Views.LoginView"
+        x:Name="LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Login" MinHeight="400" MinWidth="500" Width="500"  Height="400">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel  Grid.Row="0" >
+            <RadioButton GroupName="RaButton" x:Name="LoginRadioButton" IsChecked="{Binding IsCheckedLogin, Mode=TwoWay}"  Content="Login"  FontWeight="Bold" Checked="LoginRadioButton_Checked" />
+            <Grid>
+                <Grid.IsEnabled>
+                    <Binding Path="IsChecked" ElementName="LoginRadioButton"/>
+                </Grid.IsEnabled>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition  Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.8*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"  Grid.Column="0" Margin="10"  Content="Name"  />
+                <TextBox  Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding LoginNick}"/>
+
+                <Label Grid.Row="1"  Grid.Column="0" Margin="10"  Content="Password"  />
+                <PasswordBox  Grid.Row="1" Grid.Column="1" Margin="10"  PasswordChanged="PasswordBox_PasswordChanged" />
+            </Grid>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <RadioButton GroupName="RaButton" x:Name="RegistrationRadioButton" IsChecked="{Binding IsCheckedRegistration, Mode=TwoWay}"  Content="Registration"  FontWeight="Bold"/>
+            <Grid>
+                <Grid.IsEnabled>
+                    <Binding Path="IsChecked" ElementName="RegistrationRadioButton"/>
+                </Grid.IsEnabled>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition  Height="0.3*"/>
+                    <RowDefinition  Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"  Grid.Column="0" Margin="10"  Content="Name"  />
+                <TextBox  Grid.Row="0" Grid.Column="1" Margin="10" Text=""/>
+
+                <Label Grid.Row="1"  Grid.Column="0" Margin="10"  Content="Password First Time"  />
+                <PasswordBox  Grid.Row="1" Grid.Column="1" Margin="10" Name="FirstRegistrationPassword" PasswordChanged="FirstRegistrationPassword_OnPasswordChanged" />
+
+                <Label Grid.Row="2"  Grid.Column="0" Margin="10"  Content="Password Second Time"   />
+                <PasswordBox  Grid.Row="2" Grid.Column="1" Margin="10"  Name="SecondRegistratonPassword" PasswordChanged="SecondRegistratonPassword_OnPasswordChanged"/>
+            </Grid>
+
+        </StackPanel>
+
+        <Button Grid.Row="2" IsDefault="True" Command="{Binding EnterCommand}" CommandParameter="{Binding ElementName=LoginWindow}" x:Name="EnterButton"  Content="Enter">
+
+        </Button>
+    </Grid>
+</Window>
