@@ -21,13 +21,13 @@ namespace Pexeso.Wpf.ViewModels
         public RelayCommand<IClosable> EnterCommand { get; set; }
 
         private IPexesoService PexesoService;
-        private IChatService ChatSerivce;
+        private IChatService ChatService;
 
 
         public LoginViewModel(IPexesoService pexesoService, IChatService chatSerivce)
         {
             PexesoService = pexesoService;
-            ChatSerivce = chatSerivce;
+            ChatService = chatSerivce;
             CommandInit();
         }
 
@@ -61,7 +61,7 @@ namespace Pexeso.Wpf.ViewModels
             if (IsCheckedLogin)
             {
                 MessageBox.Show("Prihlasenie boo úspešné");
-                ChatSerivce.Nick = LoginNick;
+                ChatService.Nick = LoginNick;
                 MainWindow mainWin = new MainWindow();
                 mainWin.Show();
 
