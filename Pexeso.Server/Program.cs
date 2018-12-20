@@ -12,7 +12,7 @@ namespace Pexeso.Server
         static void Main(string[] args)
         {
 
-            ServiceHost selfHost = new ServiceHost(typeof(Service1));
+            ServiceHost selfHost = new ServiceHost(typeof(ChatService));
             try
             {
                 selfHost.Open();

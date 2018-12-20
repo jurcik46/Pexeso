@@ -59,5 +59,14 @@ namespace Pexeso.Library.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}  send: {1}.
+        /// </summary>
+        internal static string Chat_NewMessage__0___send___1_ {
+            get {
+                return ResourceManager.GetString("Chat_NewMessage__0___send___1_", resourceCulture);
+            }
+        }
     }
 }
