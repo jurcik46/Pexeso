@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
+using Pexeso.Library.Models;
 using Pexeso.Wpf.Interfaces;
 using Pexeso.Wpf.Model;
 
@@ -27,7 +28,7 @@ namespace Pexeso.Wpf.ViewModels
         public RelayCommand<IClosable> InviteCommand { get; set; }
         public RelayCommand<IClosable> RandomInviteCommand { get; set; }
 
-        public ObservableCollection<Player> PlayerList { get; set; }
+        public ObservableCollection<User> PlayerList { get; set; }
         public Player SelectedPlayer { get; set; }
 
         private IPexesoService PexesoService { get; set; }
@@ -35,11 +36,19 @@ namespace Pexeso.Wpf.ViewModels
 
         public InviteViewModel(IPexesoService pexesoService, IChatService chatService)
         {
-
-            PlayerList = new ObservableCollection<Player>();
+            PlayerList = new ObservableCollection<User>();
             PexesoService = pexesoService;
             ChatService = chatService;
             CommandInit();
+            LoadPlayer();
+        }
+
+        private void LoadPlayer()
+        {
+            foreach (var u in ChatService.GetOnlineUser())
+            {
+                PlayerList.Add(u);
+            }
         }
 
         public InviteViewModel()

@@ -33,10 +33,6 @@ namespace Pexeso.Server
             Chat.RemoveUser(user);
         }
 
-        public List<Message> GetMessages(User user)
-        {
-            return Chat.GetNewMessages(user);
-        }
 
         public void SendMessage(Message newMessage)
         {

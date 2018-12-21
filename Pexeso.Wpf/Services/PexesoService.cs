@@ -37,11 +37,12 @@ namespace Pexeso.Wpf.Services
         public Stopwatch RoundStopWatch { get; set; }
         public Stopwatch TurnStopWatch { get; set; }
 
+        private IChatService ChatService { get; set; }
 
 
-        public PexesoService()
+        public PexesoService(IChatService chatService)
         {
-            UserInfo = new User();
+            ChatService = chatService;
             Score = 0;
             RoundTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(800) };
             TurnTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(800) };

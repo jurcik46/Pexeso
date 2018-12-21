@@ -117,6 +117,8 @@ namespace Pexeso.Wpf.ViewModels
             PexesoService.TurnTimer.Tick += InActiveTimerTick;
             PexesoService.RoundTimer.Tick += RoundTImeTick;
             Score = PexesoService.Score.ToString();
+
+            ChatService.StartConnection();
         }
 
         private void LoadCardsToBorder()

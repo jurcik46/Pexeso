@@ -17,8 +17,7 @@ namespace Pexeso.Library.ServiceInterfaces
         [OperationContract]
         void RemoveUser(User user);
 
-        [OperationContract]
-        List<Message> GetMessages(User user);
+
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(Message newMessage);

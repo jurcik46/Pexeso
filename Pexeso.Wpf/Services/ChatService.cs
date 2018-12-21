@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using Pexeso.Library;
+using Pexeso.Wpf.Interfaces;
 using Pexeso.Wpf.ServicePexeso;
 using Pexeso.Wpf.ViewModels;
 using IChatService = Pexeso.Library.ServiceInterfaces.IChatService;
@@ -16,6 +17,7 @@ namespace Pexeso.Wpf.Services
 
         private IChatService Server { get; set; }
 
+
         public User UserInfo { get; set; }
 
 
@@ -24,13 +26,14 @@ namespace Pexeso.Wpf.Services
             //= DuplexChannelFactory<IChatService>(new InstanceContext(new MainViewModel()), "NetTcpBinding_IChatService");
 
             //StartConnection();
+            UserInfo = new User();
         }
 
         public void StartConnection()
         {
             var duplexChannelFactory = new DuplexChannelFactory<IChatService>(new InstanceContext(ViewModelLocator.MainViewModel), "TcpPexesoChatService");
             Server = duplexChannelFactory.CreateChannel();
-            UserInfo = Server.ClientConnection(UserInfo.UserName);
+            UserInfo = Server.ClientConnection(UserInfo);
         }
 
 
@@ -39,9 +42,9 @@ namespace Pexeso.Wpf.Services
             Server.SendMessage(new Message(text, UserInfo));
         }
 
-        public List<Message> GetMessageFromServer()
+        public List<User> GetOnlineUser()
         {
-            return Server.GetMessages(UserInfo).ToList();
+            return Server.GetAllUsers();
         }
 
 

@@ -14,7 +14,7 @@ namespace Pexeso.Server
         public List<User> ConnectedUser { get; set; } = new List<User>();
         public Dictionary<string, List<Message>> Messages { get; set; } = new Dictionary<string, List<Message>>();
 
-        private readonly Dictionary<int, List<IClientChatCallback>> _clientCallbacks = new Dictionary<int, List<IClientChatCallback>>();
+        private readonly Dictionary<int, IClientChatCallback> _clientCallbacks = new Dictionary<int, IClientChatCallback>();
 
         public User AddNewUser(User newUser)
         {
@@ -42,21 +42,6 @@ namespace Pexeso.Server
             }
         }
 
-        public List<Message> GetNewMessages(User user)
-        {
-            List<Message> newMessage = Messages[user.UserName];
-            Messages[user.UserName] = new List<Message>();
-
-            if (newMessage.Count > 0)
-            {
-                return newMessage;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         public List<User> GetAllUsers()
         {
             return ConnectedUser;
@@ -70,31 +55,19 @@ namespace Pexeso.Server
 
         private void NotifyClients(Message message)
         {
-
-            IClientChatCallback value;
-            _clientCallbacks.TryGetValue(message.ToUser.Id, out value)
-
-
-                _clientCallbacks[message.ToUser.Id];
-            for (int i = 0; i < _clientCallbacks.Count; i++)
+            try
             {
-                try
-                {
-                    // Volame metody klientov
-                    _clientCallbacks[i].MessageReceived(message);
-                }
-                catch (Exception)
-                {
-                    // Ak nastane chyba, vyhodime klienta zo zoznamu
-                    _clientCallbacks.RemoveAt(i);
-                    i--;
-                }
+                _clientCallbacks[message.ToUser.Id].MessageReceived(message);
+            }
+            catch (Exception)
+            {
+                _clientCallbacks.Remove(message.ToUser.Id);
             }
         }
 
         public void AddClientCallback(IClientChatCallback clientCallback, User user)
         {
-            _clientCallbacks.Add(clientCallback);
+            _clientCallbacks.Add(user.Id, clientCallback);
         }
     }
 }

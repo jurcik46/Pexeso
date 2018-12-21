@@ -9,8 +9,8 @@ namespace Pexeso.Wpf.Interfaces
         User UserInfo { get; set; }
 
         void SendMessage(string text);
+        List<User> GetOnlineUser();
         void StartConnection();
-        List<Message> GetMessageFromServer();
         void CloseConnection();
 
 

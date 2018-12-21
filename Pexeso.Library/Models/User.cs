@@ -15,9 +15,11 @@ namespace Pexeso.Library.Models
         public string Password { get; set; }
 
         [DataMember]
-        public string IpAddress { get; set; }
+        public bool InGame { get; set; }
 
         [DataMember]
         public string HostName { get; set; }
+
+
     }
 }
