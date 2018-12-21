@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="0.8*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0"  Grid.Column="0" Margin="10"  Content="Name"  />
-                <TextBox  Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding LoginNick}"/>
+                <TextBox  Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding LoginNick, UpdateSourceTrigger=PropertyChanged }"/>
 
                 <Label Grid.Row="1"  Grid.Column="0" Margin="10"  Content="Password"  />
                 <PasswordBox  Grid.Row="1" Grid.Column="1" Margin="10"  PasswordChanged="PasswordBox_PasswordChanged" />
@@ -51,7 +51,7 @@
                     <ColumnDefinition Width="0.6*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0"  Grid.Column="0" Margin="10"  Content="Name"  />
-                <TextBox  Grid.Row="0" Grid.Column="1" Margin="10" Text=""/>
+                <TextBox  Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding RegistrationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
                 <Label Grid.Row="1"  Grid.Column="0" Margin="10"  Content="Password First Time"  />
                 <PasswordBox  Grid.Row="1" Grid.Column="1" Margin="10" Name="FirstRegistrationPassword" PasswordChanged="FirstRegistrationPassword_OnPasswordChanged" />

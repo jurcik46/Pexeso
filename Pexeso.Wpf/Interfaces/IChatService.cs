@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pexeso.Library;
+using Pexeso.Library.Models;
 
 namespace Pexeso.Wpf.Interfaces
 {

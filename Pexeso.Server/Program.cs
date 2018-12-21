@@ -12,18 +12,26 @@ namespace Pexeso.Server
         static void Main(string[] args)
         {
 
-            ServiceHost selfHost = new ServiceHost(typeof(ChatService));
+            ServiceHost chatService = new ServiceHost(typeof(ChatService));
+            ServiceHost gameService = new ServiceHost(typeof(GameService));
+            ServiceHost entranceService = new ServiceHost(typeof(EntranceService));
             try
             {
-                selfHost.Open();
+                chatService.Open();
+                gameService.Open();
+                entranceService.Open();
                 Console.WriteLine("The service is ready. Press <ENTER> to terminate service.");
                 Console.ReadLine();
-                selfHost.Close();
+                chatService.Close();
+                gameService.Close();
+                entranceService.Close();
             }
             catch (CommunicationException ce)
             {
                 Console.WriteLine("An exception occurred: {0}", ce.Message);
-                selfHost.Abort();
+                chatService.Abort();
+                gameService.Abort();
+                entranceService.Abort();
             }
 
         }

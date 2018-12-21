@@ -43,7 +43,7 @@ namespace Pexeso.Wpf.Views
 
         private void VizualizePasswordValidation(PasswordBox passwordBox)
         {
-            if (string.IsNullOrWhiteSpace(passwordBox.Password) || passwordBox.Password.Length < 5)
+            if (string.IsNullOrWhiteSpace(passwordBox.Password) || passwordBox.Password.Length < 4)
             {
                 passwordBox.BorderThickness = new Thickness(3);
                 passwordBox.ToolTip = "Heslo nemôže byť prázdne alebo obsahovať medzery a musí byť dlhšie ako 5 znakov!";

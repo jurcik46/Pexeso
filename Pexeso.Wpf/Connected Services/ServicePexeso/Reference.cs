@@ -8,130 +8,154 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Pexeso.Wpf.ServicePexeso {
-    
-    
+using Pexeso.Library.Models;
+
+namespace Pexeso.Wpf.ServicePexeso
+{
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicePexeso.IChatService", CallbackContract=typeof(Pexeso.Wpf.ServicePexeso.IChatServiceCallback))]
-    public interface IChatService {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ClientConnection", ReplyAction="http://tempuri.org/IChatService/ClientConnectionResponse")]
-        Pexeso.Library.User ClientConnection(string userName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ClientConnection", ReplyAction="http://tempuri.org/IChatService/ClientConnectionResponse")]
-        System.Threading.Tasks.Task<Pexeso.Library.User> ClientConnectionAsync(string userName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetAllUsers", ReplyAction="http://tempuri.org/IChatService/GetAllUsersResponse")]
-        Pexeso.Library.User[] GetAllUsers();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetAllUsers", ReplyAction="http://tempuri.org/IChatService/GetAllUsersResponse")]
-        System.Threading.Tasks.Task<Pexeso.Library.User[]> GetAllUsersAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/RemoveUser", ReplyAction="http://tempuri.org/IChatService/RemoveUserResponse")]
-        void RemoveUser(Pexeso.Library.User user);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/RemoveUser", ReplyAction="http://tempuri.org/IChatService/RemoveUserResponse")]
-        System.Threading.Tasks.Task RemoveUserAsync(Pexeso.Library.User user);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetMessages", ReplyAction="http://tempuri.org/IChatService/GetMessagesResponse")]
-        Pexeso.Library.Message[] GetMessages(Pexeso.Library.User user);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetMessages", ReplyAction="http://tempuri.org/IChatService/GetMessagesResponse")]
-        System.Threading.Tasks.Task<Pexeso.Library.Message[]> GetMessagesAsync(Pexeso.Library.User user);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
-        void SendMessage(Pexeso.Library.Message newMessage);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
-        System.Threading.Tasks.Task SendMessageAsync(Pexeso.Library.Message newMessage);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/RegisterMessageNotification")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "ServicePexeso.IChatService", CallbackContract = typeof(Pexeso.Wpf.ServicePexeso.IChatServiceCallback))]
+    public interface IChatService
+    {
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/ClientConnection", ReplyAction = "http://tempuri.org/IChatService/ClientConnectionResponse")]
+        User ClientConnection(string userName);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/ClientConnection", ReplyAction = "http://tempuri.org/IChatService/ClientConnectionResponse")]
+        System.Threading.Tasks.Task<User> ClientConnectionAsync(string userName);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/GetAllUsers", ReplyAction = "http://tempuri.org/IChatService/GetAllUsersResponse")]
+        User[] GetAllUsers();
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/GetAllUsers", ReplyAction = "http://tempuri.org/IChatService/GetAllUsersResponse")]
+        System.Threading.Tasks.Task<User[]> GetAllUsersAsync();
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/RemoveUser", ReplyAction = "http://tempuri.org/IChatService/RemoveUserResponse")]
+        void RemoveUser(User user);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/RemoveUser", ReplyAction = "http://tempuri.org/IChatService/RemoveUserResponse")]
+        System.Threading.Tasks.Task RemoveUserAsync(User user);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/GetMessages", ReplyAction = "http://tempuri.org/IChatService/GetMessagesResponse")]
+        Message[] GetMessages(User user);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IChatService/GetMessages", ReplyAction = "http://tempuri.org/IChatService/GetMessagesResponse")]
+        System.Threading.Tasks.Task<Message[]> GetMessagesAsync(User user);
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IChatService/SendMessage")]
+        void SendMessage(Message newMessage);
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IChatService/SendMessage")]
+        System.Threading.Tasks.Task SendMessageAsync(Message newMessage);
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IChatService/RegisterMessageNotification")]
         void RegisterMessageNotification();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/RegisterMessageNotification")]
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IChatService/RegisterMessageNotification")]
         System.Threading.Tasks.Task RegisterMessageNotificationAsync();
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IChatServiceCallback {
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/MessageReceived")]
-        void MessageReceived(Pexeso.Library.Message message);
+    public interface IChatServiceCallback
+    {
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IChatService/MessageReceived")]
+        void MessageReceived(Message message);
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IChatServiceChannel : Pexeso.Wpf.ServicePexeso.IChatService, System.ServiceModel.IClientChannel {
+    public interface IChatServiceChannel : Pexeso.Wpf.ServicePexeso.IChatService, System.ServiceModel.IClientChannel
+    {
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ChatServiceClient : System.ServiceModel.DuplexClientBase<Pexeso.Wpf.ServicePexeso.IChatService>, Pexeso.Wpf.ServicePexeso.IChatService {
-        
-        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
-                base(callbackInstance) {
+    public partial class ChatServiceClient : System.ServiceModel.DuplexClientBase<Pexeso.Wpf.ServicePexeso.IChatService>, Pexeso.Wpf.ServicePexeso.IChatService
+    {
+
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance) :
+                base(callbackInstance)
+        {
         }
-        
-        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
-                base(callbackInstance, endpointConfigurationName) {
+
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) :
+                base(callbackInstance, endpointConfigurationName)
+        {
         }
-        
-        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) :
+                base(callbackInstance, endpointConfigurationName, remoteAddress)
+        {
         }
-        
-        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
+                base(callbackInstance, endpointConfigurationName, remoteAddress)
+        {
         }
-        
-        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(callbackInstance, binding, remoteAddress) {
+
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
+                base(callbackInstance, binding, remoteAddress)
+        {
         }
-        
-        public Pexeso.Library.User ClientConnection(string userName) {
+
+        public User ClientConnection(string userName)
+        {
             return base.Channel.ClientConnection(userName);
         }
-        
-        public System.Threading.Tasks.Task<Pexeso.Library.User> ClientConnectionAsync(string userName) {
+
+        public System.Threading.Tasks.Task<User> ClientConnectionAsync(string userName)
+        {
             return base.Channel.ClientConnectionAsync(userName);
         }
-        
-        public Pexeso.Library.User[] GetAllUsers() {
+
+        public User[] GetAllUsers()
+        {
             return base.Channel.GetAllUsers();
         }
-        
-        public System.Threading.Tasks.Task<Pexeso.Library.User[]> GetAllUsersAsync() {
+
+        public System.Threading.Tasks.Task<User[]> GetAllUsersAsync()
+        {
             return base.Channel.GetAllUsersAsync();
         }
-        
-        public void RemoveUser(Pexeso.Library.User user) {
+
+        public void RemoveUser(User user)
+        {
             base.Channel.RemoveUser(user);
         }
-        
-        public System.Threading.Tasks.Task RemoveUserAsync(Pexeso.Library.User user) {
+
+        public System.Threading.Tasks.Task RemoveUserAsync(User user)
+        {
             return base.Channel.RemoveUserAsync(user);
         }
-        
-        public Pexeso.Library.Message[] GetMessages(Pexeso.Library.User user) {
+
+        public Message[] GetMessages(User user)
+        {
             return base.Channel.GetMessages(user);
         }
-        
-        public System.Threading.Tasks.Task<Pexeso.Library.Message[]> GetMessagesAsync(Pexeso.Library.User user) {
+
+        public System.Threading.Tasks.Task<Message[]> GetMessagesAsync(User user)
+        {
             return base.Channel.GetMessagesAsync(user);
         }
-        
-        public void SendMessage(Pexeso.Library.Message newMessage) {
+
+        public void SendMessage(Message newMessage)
+        {
             base.Channel.SendMessage(newMessage);
         }
-        
-        public System.Threading.Tasks.Task SendMessageAsync(Pexeso.Library.Message newMessage) {
+
+        public System.Threading.Tasks.Task SendMessageAsync(Message newMessage)
+        {
             return base.Channel.SendMessageAsync(newMessage);
         }
-        
-        public void RegisterMessageNotification() {
+
+        public void RegisterMessageNotification()
+        {
             base.Channel.RegisterMessageNotification();
         }
-        
-        public System.Threading.Tasks.Task RegisterMessageNotificationAsync() {
+
+        public System.Threading.Tasks.Task RegisterMessageNotificationAsync()
+        {
             return base.Channel.RegisterMessageNotificationAsync();
         }
     }

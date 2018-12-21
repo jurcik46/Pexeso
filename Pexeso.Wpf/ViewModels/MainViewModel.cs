@@ -9,16 +9,17 @@ using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Pexeso.Library;
+using Pexeso.Library.ClientCallbacks;
 using Pexeso.Wpf.enums;
 using Pexeso.Wpf.Interfaces;
 using Pexeso.Wpf.Model;
 using Pexeso.Wpf.Views;
 using IChatService = Pexeso.Wpf.Interfaces.IChatService;
-using Message = Pexeso.Library.Message;
+using Message = Pexeso.Library.Models.Message;
 
 namespace Pexeso.Wpf.ViewModels
 {
-    public class MainViewModel : ViewModelBase, IClientCallback
+    public class MainViewModel : ViewModelBase, IClientChatCallback
     {
         private InviteViewModel InviteViewMdoel { get; set; }
         private InviteViewWindows InviteViewWindow { get; set; }
@@ -95,7 +96,7 @@ namespace Pexeso.Wpf.ViewModels
             {
                 _sendingMessage = value;
                 SendMessageCommand.RaiseCanExecuteChanged();
-
+                RaisePropertyChanged();
             }
         }
 
@@ -333,12 +334,14 @@ namespace Pexeso.Wpf.ViewModels
 
         private bool CanSendMessage()
         {
-            return SendingMessage != "";
+            return true;
+            return !string.IsNullOrWhiteSpace(SendingMessage);
         }
 
         private void SendMessage()
         {
             ChatService.SendMessage(SendingMessage);
+            SendingMessage = "";
         }
         #endregion
 
@@ -351,6 +354,7 @@ namespace Pexeso.Wpf.ViewModels
         public void MessageReceived(Message message)
         {
             Messages.Add(message);
+            Console.WriteLine(message.ToString());
         }
     }
 }

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using Pexeso.Library.ClientCallbacks;
+using Pexeso.Library.Models;
 
-namespace Pexeso.Library
+namespace Pexeso.Library.ServiceInterfaces
 {
-    [ServiceContract(CallbackContract = typeof(IClientCallback))]
+    [ServiceContract(CallbackContract = typeof(IClientChatCallback))]
     public interface IChatService
     {
         [OperationContract]
-        User ClientConnection(string userName);
+        User ClientConnection(User user);
 
         [OperationContract]
         List<User> GetAllUsers();
@@ -25,7 +23,5 @@ namespace Pexeso.Library
         [OperationContract(IsOneWay = true)]
         void SendMessage(Message newMessage);
 
-        [OperationContract(IsOneWay = true)]
-        void RegisterMessageNotification();
     }
 }

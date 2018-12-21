@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Pexeso.Library;
+using Pexeso.Library.ClientCallbacks;
+using Pexeso.Library.Models;
 
 namespace Pexeso.Wpf
 {
-    public class Event : IClientCallback
+    public class Event : IClientChatCallback
     {
 
         public Event()

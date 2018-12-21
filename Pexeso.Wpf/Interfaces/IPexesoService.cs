@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Threading;
+using Pexeso.Library.Models;
 using Pexeso.Wpf.Model;
 
 namespace Pexeso.Wpf.Interfaces
 {
     public interface IPexesoService
     {
+        User UserInfo { get; set; }
 
         void StartPexeso(int row, int columns);
         List<Card> GameCards { get; set; }

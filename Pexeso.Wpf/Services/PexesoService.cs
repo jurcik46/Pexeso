@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using Pexeso.Library.Models;
 using Pexeso.Wpf.enums;
 using Pexeso.Wpf.Extension;
 using Pexeso.Wpf.Interfaces;
@@ -15,6 +16,7 @@ namespace Pexeso.Wpf.Services
 {
     public class PexesoService : IPexesoService
     {
+        public User UserInfo { get; set; }
 
         private const string ImgsPath = "resources\\imgs";
 
@@ -35,8 +37,11 @@ namespace Pexeso.Wpf.Services
         public Stopwatch RoundStopWatch { get; set; }
         public Stopwatch TurnStopWatch { get; set; }
 
+
+
         public PexesoService()
         {
+            UserInfo = new User();
             Score = 0;
             RoundTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(800) };
             TurnTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(800) };

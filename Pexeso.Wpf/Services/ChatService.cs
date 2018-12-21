@@ -5,9 +5,9 @@ using System.ServiceModel;
 using Pexeso.Library;
 using Pexeso.Wpf.ServicePexeso;
 using Pexeso.Wpf.ViewModels;
-using IChatService = Pexeso.Library.IChatService;
-using Message = Pexeso.Library.Message;
-using User = Pexeso.Library.User;
+using IChatService = Pexeso.Library.ServiceInterfaces.IChatService;
+using Message = Pexeso.Library.Models.Message;
+using User = Pexeso.Library.Models.User;
 
 namespace Pexeso.Wpf.Services
 {
@@ -23,15 +23,12 @@ namespace Pexeso.Wpf.Services
         {
             //= DuplexChannelFactory<IChatService>(new InstanceContext(new MainViewModel()), "NetTcpBinding_IChatService");
 
-            UserInfo = new User();
             //StartConnection();
         }
 
         public void StartConnection()
         {
-            //InstanceContext instanceContext = new InstanceContext(new Event());
-            //Server = new ChatServiceClient(instanceContext, "TcpPexesoChatService");
-            var duplexChannelFactory = new DuplexChannelFactory<IChatService>(new InstanceContext(new Event()), "TcpPexesoChatService");
+            var duplexChannelFactory = new DuplexChannelFactory<IChatService>(new InstanceContext(ViewModelLocator.MainViewModel), "TcpPexesoChatService");
             Server = duplexChannelFactory.CreateChannel();
             UserInfo = Server.ClientConnection(UserInfo.UserName);
         }

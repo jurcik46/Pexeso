@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Pexeso.Library
+namespace Pexeso.Library.Models
 {
     [DataContract]
     public class Message
     {
+        [DataMember]
         public DateTime Time { get; set; }
 
         [DataMember]
@@ -17,6 +14,9 @@ namespace Pexeso.Library
 
         [DataMember]
         public User User { get; set; }
+
+        [DataMember]
+        public User ToUser { get; set; }
 
         public Message() { }
 

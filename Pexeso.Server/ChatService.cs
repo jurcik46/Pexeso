@@ -5,6 +5,9 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Pexeso.Library;
+using Pexeso.Library.ClientCallbacks;
+using Pexeso.Library.Models;
+using Pexeso.Library.ServiceInterfaces;
 
 namespace Pexeso.Server
 {
@@ -14,13 +17,10 @@ namespace Pexeso.Server
 
         private Chat Chat = new Chat();
 
-
-        private readonly List<IClientCallback> _clientCallbacks = new List<IClientCallback>();
-
-        public User ClientConnection(string userName)
+        public User ClientConnection(User user)
         {
-            RegisterMessageNotification();
-            return Chat.AddNewUser(new User() { UserName = userName });
+            Chat.AddClientCallback(OperationContext.Current.GetCallbackChannel<IClientChatCallback>(), user);
+            return Chat.AddNewUser(user);
         }
 
         public List<User> GetAllUsers()
@@ -38,46 +38,11 @@ namespace Pexeso.Server
             return Chat.GetNewMessages(user);
         }
 
-
-
         public void SendMessage(Message newMessage)
         {
             Chat.NewMessage(newMessage);
-            NotifyClients(newMessage);
         }
 
-        //public void SendMessage(string text, string nick)
-        //{
-        //    //var message = new Message(text, nick);
-        //    //_messages.Add(message);
-
-
-        //    //NotifyClients(message);
-        //}
-
-        private void NotifyClients(Message message)
-        {
-            for (int i = 0; i < _clientCallbacks.Count; i++)
-            {
-                try
-                {
-                    // Volame metody klientov
-                    _clientCallbacks[i].MessageReceived(message);
-                }
-                catch (Exception)
-                {
-                    // Ak nastane chyba, vyhodime klienta zo zoznamu
-                    _clientCallbacks.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
-
-        public void RegisterMessageNotification()
-        {
-            var clientCallback = OperationContext.Current.GetCallbackChannel<IClientCallback>();
-            _clientCallbacks.Add(clientCallback);
-        }
     }
 }
 
