@@ -68,7 +68,7 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Row="0">
                 <ContentControl.Content>
-                    <ListView x:Name="chatList" ItemsSource="{Binding ChatRoom.Messages}" Margin="5"
+                    <ListView x:Name="chatList" ItemsSource="{Binding Messages}" Margin="5"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
@@ -89,9 +89,9 @@
                                     <DockPanel HorizontalAlignment="Stretch">
                                         <DockPanel>
                                             <TextBlock Padding="2" Text="{Binding Username, StringFormat={}{0}:}" 
-                                       Foreground="{Binding UserColor}" 
+                                       Foreground="Blue" 
                                        FontWeight="Bold" DockPanel.Dock="Left"/>
-                                            <TextBlock DockPanel.Dock="Left" Padding="2" Text="{Binding Message}" TextWrapping="Wrap"/>
+                                            <TextBlock DockPanel.Dock="Left" Padding="2" Text="{Binding Messages.Text}" TextWrapping="Wrap"/>
                                         </DockPanel>
                                     </DockPanel>
                                 </Border>
@@ -102,12 +102,11 @@
             </ContentControl>
 
             <DockPanel Grid.Row="1">
-                <TextBox Margin="5" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" 
-                     AcceptsReturn="False"
+                <TextBox Margin="5" Text="{Binding SendingMessage, Mode=TwoWay}" 
                      TextWrapping="Wrap"/>
             </DockPanel>
             <DockPanel Grid.Row="2" VerticalAlignment="Top">
-                <Button Margin="5" IsDefault="True" Command="{Binding SendCommand}">Send</Button>
+                <Button Margin="5" IsDefault="True" Command="{Binding SendMessageCommand}">Send</Button>
             </DockPanel>
 
         </Grid>

@@ -19,6 +19,7 @@ namespace Pexeso.Server
 
         public User ClientConnection(string userName)
         {
+            RegisterMessageNotification();
             return Chat.AddNewUser(new User() { UserName = userName });
         }
 
@@ -42,16 +43,17 @@ namespace Pexeso.Server
         public void SendMessage(Message newMessage)
         {
             Chat.NewMessage(newMessage);
+            NotifyClients(newMessage);
         }
 
-        public void SendMessage(string text, string nick)
-        {
-            //var message = new Message(text, nick);
-            //_messages.Add(message);
+        //public void SendMessage(string text, string nick)
+        //{
+        //    //var message = new Message(text, nick);
+        //    //_messages.Add(message);
 
 
-            //NotifyClients(message);
-        }
+        //    //NotifyClients(message);
+        //}
 
         private void NotifyClients(Message message)
         {

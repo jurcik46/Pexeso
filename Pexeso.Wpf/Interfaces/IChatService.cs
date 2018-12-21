@@ -1,8 +1,17 @@
-﻿namespace Pexeso.Wpf.Interfaces
+﻿using System.Collections.Generic;
+using Pexeso.Library;
+
+namespace Pexeso.Wpf.Interfaces
 {
     public interface IChatService
     {
+        User UserInfo { get; set; }
 
-        string Nick { get; set; }
+        void SendMessage(string text);
+        void StartConnection();
+        List<Message> GetMessageFromServer();
+        void CloseConnection();
+
+
     }
 }

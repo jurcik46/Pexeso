@@ -8,15 +8,21 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Pexeso.Library;
 using Pexeso.Wpf.enums;
 using Pexeso.Wpf.Interfaces;
 using Pexeso.Wpf.Model;
 using Pexeso.Wpf.Views;
+using IChatService = Pexeso.Wpf.Interfaces.IChatService;
+using Message = Pexeso.Library.Message;
 
 namespace Pexeso.Wpf.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IClientCallback
     {
+        private InviteViewModel InviteViewMdoel { get; set; }
+        private InviteViewWindows InviteViewWindow { get; set; }
+
         private string _score;
         public int ClickCounter { get; set; }
         public string Score
@@ -76,11 +82,32 @@ namespace Pexeso.Wpf.ViewModels
 
         private IChatService ChatService { get; set; }
 
+        #region Chat
+
+        public ObservableCollection<Message> Messages { get; set; }
+
+        private string _sendingMessage;
+
+        public string SendingMessage
+        {
+            get { return _sendingMessage; }
+            set
+            {
+                _sendingMessage = value;
+                SendMessageCommand.RaiseCanExecuteChanged();
+
+            }
+        }
+
+        public RelayCommand SendMessageCommand { get; set; }
+
+        #endregion
 
         public MainViewModel(IPexesoService pexesoService, IChatService chatService)
         {
             Pictures = new ObservableCollection<Image>();
             Rectangles = new ObservableCollection<Rectangle>();
+            Messages = new ObservableCollection<Message>();
             PexesoService = pexesoService;
             ChatService = chatService;
             CommmandInit();
@@ -272,6 +299,7 @@ namespace Pexeso.Wpf.ViewModels
         {
             StartGameCommand = new RelayCommand(StartGame, CanStartGame);
             MouseUpCommand = new RelayCommand<EventArgs>(MouseUp, CanMouseUp);
+            SendMessageCommand = new RelayCommand(SendMessage, CanSendMessage);
         }
 
         public bool CanMouseUp(EventArgs args)
@@ -293,13 +321,24 @@ namespace Pexeso.Wpf.ViewModels
 
         private void StartGame()
         {
-            InviteViewWindows inviteWindows = new InviteViewWindows();
-            inviteWindows.DataContext = new InviteViewModel();
-            inviteWindows.ShowDialog();
+            InviteViewMdoel = new InviteViewModel(PexesoService, ChatService);
+            InviteViewWindow = new InviteViewWindows() { DataContext = InviteViewMdoel };
+            InviteViewWindow.ShowDialog();
 
+            ChatService.StartConnection();
             LoadCardsToBorder();
             PexesoService.InGame = true;
             ClickCounter = 0;
+        }
+
+        private bool CanSendMessage()
+        {
+            return SendingMessage != "";
+        }
+
+        private void SendMessage()
+        {
+            ChatService.SendMessage(SendingMessage);
         }
         #endregion
 
@@ -309,8 +348,9 @@ namespace Pexeso.Wpf.ViewModels
         }
 
 
-
-
-
+        public void MessageReceived(Message message)
+        {
+            Messages.Add(message);
+        }
     }
 }

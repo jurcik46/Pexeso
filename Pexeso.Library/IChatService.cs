@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pexeso.Library
 {
-    [ServiceContract(SessionMode = SessionMode.Allowed, CallbackContract = typeof(IClientCallback))]
+    [ServiceContract(CallbackContract = typeof(IClientCallback))]
     public interface IChatService
     {
         [OperationContract]

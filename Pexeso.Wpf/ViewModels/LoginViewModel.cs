@@ -61,7 +61,7 @@ namespace Pexeso.Wpf.ViewModels
             if (IsCheckedLogin)
             {
                 MessageBox.Show("Prihlasenie boo úspešné");
-                ChatService.Nick = LoginNick;
+                ChatService.UserInfo.UserName = LoginNick;
                 MainWindow mainWin = new MainWindow();
                 mainWin.Show();
 

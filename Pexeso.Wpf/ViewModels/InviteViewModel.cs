@@ -31,12 +31,14 @@ namespace Pexeso.Wpf.ViewModels
         public Player SelectedPlayer { get; set; }
 
         private IPexesoService PexesoService { get; set; }
+        private IChatService ChatService { get; set; }
 
-        public InviteViewModel(IPexesoService pexesoService)
+        public InviteViewModel(IPexesoService pexesoService, IChatService chatService)
         {
 
             PlayerList = new ObservableCollection<Player>();
             PexesoService = pexesoService;
+            ChatService = chatService;
             CommandInit();
         }
 
@@ -52,12 +54,14 @@ namespace Pexeso.Wpf.ViewModels
 
         private bool CanInvite(IClosable win)
         {
+            return true;
             return SelectedPlayer != null;
         }
 
         private void Invite(IClosable win)
         {
-
+            ChatService.StartConnection();
+            win?.Close();
         }
 
         private bool CanRandomInvite(IClosable win)
@@ -67,6 +71,8 @@ namespace Pexeso.Wpf.ViewModels
 
         private void RandomInvite(IClosable win)
         {
+            ChatService.StartConnection();
+            win?.Close();
 
         }
     }
